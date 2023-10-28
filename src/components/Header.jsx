@@ -29,6 +29,14 @@ const NavItemInfo = [
 ];
 
 const NavItem = ({ item }) => {
+  const [dropdown, setDropdown] = useState(false);
+
+  const DropdownHandler = () => {
+    setDropdown((curState) => {
+      return !curState;
+    });
+  };
+
   return (
     <li className="relative group">
       {item.type === "link" ? (
@@ -36,26 +44,27 @@ const NavItem = ({ item }) => {
           <a href="/" className="px-4 py-2">
             {item.name}
           </a>
-          <span
-            className="text-blue-500 absolute right-0 top-0 opacity-0 transition-all duration-500 font-bold group-hover:opacity-100  
-                group-hover:right-[90%]"
-          >
+          <span className="text-blue-500 absolute right-0 top-0 opacity-0 transition-all duration-500 font-bold group-hover:opacity-100 group-hover:right-[90%]">
             /
           </span>
         </>
       ) : (
         <>
-          <a href="/" className="flex gap-x-1 items-center">
+          <p className="flex cursor-pointer gap-x-1 items-center">
             <span>{item.name}</span>
-            <IoIosArrowDown />
-          </a>
-          <div className="hidden transition-all duration-500 pt-4 absolute bottom-0 right-0 transform translate-y-full group-hover:block w-max">
-            <ul className="flex flex-col shadow-lg rounded-lg overflow-hidden">
+            <IoIosArrowDown onClick={DropdownHandler} />
+          </p>
+          <div
+            className={`${
+              dropdown ? "hidden" : "block"
+            } lg:hidden transition-all duration-500 pt-4 absolute bottom-0 right-0 transform translate-y-full  w-max lg:group-hover:block z-50 opacity-100`}
+          >
+            <ul className="flex flex-col z-50 bg-dark-hard lg:bg-white shadow-lg rounded-lg overflow-hidden">
               {item.items.map((subItem) => {
                 return (
                   <a
                     href="/"
-                    className="hover:bg-dark-hard hover:text-white px-4 py-2 text-white lg:text-dark-soft"
+                    className="hover:bg-dark-soft hover:text-white px-4 py-2 text-white lg:text-dark-soft"
                   >
                     {subItem}
                   </a>
@@ -79,7 +88,7 @@ const Header = () => {
   };
 
   return (
-    <section>
+    <section className="sticky top-0 right-0 left-0 bg-white z-50">
       <header className="container mx-auto px-5 py-4 flex justify-between items-center">
         <div>
           <img className="w-16" src={images.Logo} alt="Logo" />
