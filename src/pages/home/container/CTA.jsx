@@ -1,5 +1,7 @@
 import React from "react";
 
+import { images } from "../../../constants";
+
 const CTA = () => {
   return (
     <>
@@ -20,7 +22,7 @@ const CTA = () => {
       </svg>
 
       <section className="relative bg-dark-hard px-5">
-        <div className="container grid grid-cols-12 mx-autowwwwww">
+        <div className="container grid grid-cols-12 mx-auto py-10">
           <div className="col-span-12">
             <h2 className="text-white font-roboto font-bold text-2xl">
               Get our stories delivered From us to your inbox weekly.
@@ -36,12 +38,23 @@ const CTA = () => {
               </button>
             </div>
             <p className=" text-dark-light text-sm leading-7 mt-6 lg:mt-10 lg:text-center">
-              <span className="text-white font-bold italic">
+              <span className="text-[#B3BAC5] font-bold italic">
                 Get a response tomorrow
               </span>{" "}
               if you submit by 9pm today. If we received after 9pm will get a
               response the following day.
             </p>
+          </div>
+          <div className="col-span-12 hidden mb-[70px] md:block md:order-first lg:col-span-6 lg:order-last">
+            <div className="w-3/4 mx-auto relative">
+              <div className="w-full rounded-lg bg-white p-3 z-[1] relative">
+                <img
+                  src={images.CTAImage}
+                  alt="product"
+                  className="w-full object-cover object-center h-auto md:h-52 lg:h-48 xl:h-60"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
