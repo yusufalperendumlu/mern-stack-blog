@@ -24,13 +24,43 @@ const breadCrumbsData = [
 ];
 
 const postsData = [
-    {
-        _id: 1,
-        image: images.Post1Image,
-        title: "Help children get better education",
-        createdAt: ""
-    }
-]
+  {
+    _id: 1,
+    image: images.Post1Image,
+    title: "Help children get better education",
+    createdAt: "2023-11-05T18:18:29.607+0000",
+  },
+  {
+    _id: 2,
+    image: images.Post1Image,
+    title: "Help children get better education",
+    createdAt: "2023-11-05T18:18:29.607+0000",
+  },
+  {
+    _id: 3,
+    image: images.Post1Image,
+    title: "Help children get better education",
+    createdAt: "2023-11-05T18:18:29.607+0000",
+  },
+  {
+    _id: 4,
+    image: images.Post1Image,
+    title: "Help children get better education",
+    createdAt: "2023-11-05T18:18:29.607+0000",
+  },
+  {
+    _id: 5,
+    image: images.Post1Image,
+    title: "Help children get better education",
+    createdAt: "2023-11-05T18:18:29.607+0000",
+  },
+  {
+    _id: 6,
+    image: images.Post1Image,
+    title: "Help children get better education",
+    createdAt: "2023-11-05T18:18:29.607+0000",
+  },
+];
 
 const ArticleDetailPage = () => {
   return (
@@ -64,7 +94,7 @@ const ArticleDetailPage = () => {
             </p>
           </div>
         </article>
-        <SuggestedPosts header="Latest Article" />
+        <SuggestedPosts header="Latest Article" posts={postsData} />
       </section>
     </MainLayout>
   );
