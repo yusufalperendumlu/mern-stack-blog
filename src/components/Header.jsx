@@ -60,9 +60,10 @@ const NavItem = ({ item }) => {
             } lg:hidden transition-all duration-500 pt-4 absolute bottom-0 right-0 transform translate-y-full  w-max lg:group-hover:block z-50 opacity-100`}
           >
             <ul className="flex flex-col z-50 bg-dark-hard lg:bg-white shadow-lg rounded-lg overflow-hidden">
-              {item.items.map((subItem) => {
+              {item.items.map((subItem, index) => {
                 return (
                   <a
+                    key={index}
                     href="/"
                     className="hover:bg-dark-soft hover:text-white px-4 py-2 text-white lg:text-dark-soft"
                   >

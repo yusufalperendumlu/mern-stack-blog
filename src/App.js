@@ -11,7 +11,7 @@ function App() {
     <div className="App font-opensans select-none">
       <Routes>
         <Route index path="/" element={<HomePage />} />
-        <Route index path="/blog/:id" element={<ArticleDetailPage />} />
+        <Route path="/blog/:id" element={<ArticleDetailPage />} />
       </Routes>
     </div>
   );
