@@ -5,6 +5,7 @@ import SuggestedPosts from "./container/SuggestedPosts";
 
 import { images } from "../../constants";
 
+import CommentsContainer from "../../components/comments/CommentsContainer";
 import BreadCrumbs from "../../components/BreadCrumbs";
 import MainLayout from "../../components/MainLayout";
 
@@ -103,6 +104,7 @@ const ArticleDetailPage = () => {
               sint consequuntur. Accusantium, perferendis!
             </p>
           </div>
+          <CommentsContainer className="mt-10" />
         </article>
         <SuggestedPosts
           header="Latest Article"
