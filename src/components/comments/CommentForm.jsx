@@ -10,8 +10,22 @@ const CommentForm = ({
 
   const submitHandler = (e) => {
     e.preventDefault();
-    formSubmitHandler(value);
+    if (value.trim().length > 0) {
+      value.length > 0 && formSubmitHandler(value);
+    }
+
     setValue("");
+  };
+
+  const enterSubmitHandler = (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      if (value.trim().length > 0) {
+        value.length > 0 && formSubmitHandler(value);
+      }
+
+      setValue("");
+    }
   };
 
   return (
@@ -23,6 +37,7 @@ const CommentForm = ({
           placeholder="Leave your comment here..."
           value={value}
           onChange={(e) => setValue(e.target.value)}
+          onKeyDown={enterSubmitHandler}
         />
         <div className="flex items-center gap-x-2 pt-2">
           {formCancelHandler && (
