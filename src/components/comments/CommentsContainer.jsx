@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import autoAnimate from "@formkit/auto-animate";
 
 import Comment from "./Comment";
 import { getCommentsData } from "../../data/comments";
@@ -73,7 +74,7 @@ const CommentsContainer = ({ className, loggenedUserId }) => {
         btnLabel="Send"
         formSubmitHandler={(value) => addCommentHandler(value)}
       />
-      <div className="space-y-2 mt-8 text-b">
+      <div className="space-y-2 mt-8 text-b" ref={autoAnimate}>
         {mainComments.map((comment) => (
           <Comment
             key={comment._id}

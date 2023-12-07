@@ -39,7 +39,7 @@ const CommentForm = ({
           onChange={(e) => setValue(e.target.value)}
           onKeyDown={enterSubmitHandler}
         />
-        <div className="flex items-center gap-x-2 pt-2">
+        <div className="flex flex-col-reverse gap-y-2 items-center gap-x-2 pt-2 min-[450px]:flex-row">
           {formCancelHandler && (
             <button
               onClick={formCancelHandler}
