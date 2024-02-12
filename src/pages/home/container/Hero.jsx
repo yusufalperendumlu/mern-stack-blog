@@ -22,14 +22,16 @@ const Hero = () => {
             <input
               type="text"
               name="search"
-              className="placeholder:font-bold font-semibold text-dark-soft placeholder:text-[#959EAD] rounded-lg pl-12 pr-3 w-full py-3 focus:outline-none shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px] md:py-4"
+              className="placeholder:font-bold font-semibold text-dark-soft placeholder:text-[#959EAD] rounded-lg pl-12 pr-3 w-full py-3 outline-none shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px] md:py-4 focus:shadow-[rgba(13,_38,_76,_0.29)_5px_25px_30px] transition-all duration-300 
+              
+              "
               placeholder="Search articles"
             />
           </div>
           <div>
             <button
               className="w-full bg-primary text-white font-semibold rounded-lg px-5 py-3 md:absolute md:right-2 
-            md:top-1/4 md:-translate-y-1/4 md:w-fit md:py-2"
+            md:top-1/4 md:-translate-y-1/4 md:w-fit md:py-2 focus:outline-none"
             >
               Search
             </button>
