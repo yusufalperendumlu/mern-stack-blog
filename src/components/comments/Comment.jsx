@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { FiMessageSquare } from "react-icons/fi";
 import { MdEdit, MdDeleteOutline } from "react-icons/md";
 
 import { images } from "../../constants";
 
 import CommentForm from "./CommentForm";
+import autoAnimate from "@formkit/auto-animate";
 
 const Comment = ({
   comment,
@@ -29,6 +30,21 @@ const Comment = ({
     affectedComment._id === comment._id;
   const repliedCommentId = parentId ? parentId : comment._id;
   const replyOnUserId = comment.user._id;
+  const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+
+  const deleteClickHandler = () => {
+    setShowDeleteConfirmation(true);
+  };
+
+  const deleteConfirmHandler = () => {
+    deleteComment(comment._id);
+
+    setShowDeleteConfirmation(false);
+  };
+
+  const deleteCancelHandler = () => {
+    setShowDeleteConfirmation(false);
+  };
 
   return (
     <div className="flex flex-nowrap items-start gap-x-3 bg-[#F2F4F5] p-3 rounded-lg">
@@ -87,7 +103,7 @@ const Comment = ({
               </button>
               <button
                 className="flex items-center space-x-2"
-                onClick={() => deleteComment(comment._id)}
+                onClick={deleteClickHandler}
               >
                 <MdDeleteOutline className="w-4 h-auto" />
                 <span>Delete</span>
@@ -95,6 +111,16 @@ const Comment = ({
             </>
           )}
         </div>
+        {showDeleteConfirmation && (
+          <div className="fixed top-0 left-0 flex items-center justify-center h-full w-full flex-col bg-tooltip z-50">
+            <div className="bg-sky-500 text-white w-1/3 h-1/3 flex items-center justify-center flex-col rounded-2xl">
+              <p>Are you sure you want to delete this comment?</p>
+              <button onClick={deleteConfirmHandler}>Yes, delete</button>
+              <button onClick={deleteCancelHandler}>Cancel</button>
+            </div>
+          </div>
+        )}
+
         {isReplying && (
           <CommentForm
             btnLabel="Reply"
@@ -105,7 +131,7 @@ const Comment = ({
           />
         )}
         {replies.length > 0 && (
-          <div>
+          <div ref={autoAnimate}>
             {replies.map((reply) => (
               <Comment
                 key={reply._id}
