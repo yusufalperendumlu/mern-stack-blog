@@ -10,6 +10,7 @@ module.exports = {
           hard: "#0D2436",
           soft: "#183B56",
         },
+        tooltip: "rgba(0, 32, 84, 0.12)",
       },
       fontFamily: {
         opensans: ["'Open Sans'", "sans-serif"],
