@@ -1,27 +1,40 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
 
 import { signup } from "../../services/index/users";
+
+import { userActions } from "../../store/reducers/userReducers";
 
 import MainLayout from "../../components/MainLayout";
 
 const RegisterPage = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const userState = useSelector((state) => state.user);
+
+  useEffect(() => {
+    if (userState.userInfo) {
+      navigate("/");
+    }
+  }, [navigate, userState.userInfo]);
+
   const { mutate, isLoading } = useMutation({
     mutationFn: ({ name, email, password }) => {
       return signup({ name, email, password });
     },
     onSuccess: (data) => {
-      console.log(data);
+      dispatch(userActions.setUserInfo(data));
+      localStorage.setItem("account", JSON.stringify(data));
       toast.success("Register successfully.", {
         position: "top-right",
         style: {
           borderRadius: "10px",
           background: "#333",
           color: "#fff",
-          animationDuration: "0.5s",
           border: "2px solid #10b981",
         },
         ariaProps: {
@@ -38,7 +51,6 @@ const RegisterPage = () => {
           borderRadius: "10px",
           background: "#333",
           color: "#fff",
-          animationDuration: "0.5s",
           border: "2px solid #ff4b48",
         },
         ariaProps: {
