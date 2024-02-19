@@ -15,7 +15,37 @@ const RegisterPage = () => {
     },
     onSuccess: (data) => {
       console.log(data);
-      toast.success("Register successfully.");
+      toast.success("Register successfully.", {
+        position: "top-right",
+        style: {
+          borderRadius: "10px",
+          background: "#333",
+          color: "#fff",
+          animationDuration: "0.5s",
+          border: "2px solid #10b981",
+        },
+        ariaProps: {
+          role: "alert",
+          "aria-live": "assertive",
+        },
+      });
+    },
+    onError: (error) => {
+      console.log(error);
+      toast.error(error.message, {
+        position: "top-right",
+        style: {
+          borderRadius: "10px",
+          background: "#333",
+          color: "#fff",
+          animationDuration: "0.5s",
+          border: "2px solid #ff4b48",
+        },
+        ariaProps: {
+          role: "alert",
+          "aria-live": "assertive",
+        },
+      });
     },
   });
 
