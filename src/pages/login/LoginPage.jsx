@@ -5,13 +5,13 @@ import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 
-import { signup } from "../../services/index/users";
+import { login } from "../../services/index/users";
 
 import { userActions } from "../../store/reducers/userReducers";
 
 import MainLayout from "../../components/MainLayout";
 
-const RegisterPage = () => {
+const LoginPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const userState = useSelector((state) => state.user);
@@ -23,8 +23,8 @@ const RegisterPage = () => {
   }, [navigate, userState.userInfo]);
 
   const { mutate, isLoading } = useMutation({
-    mutationFn: ({ name, email, password }) => {
-      return signup({ name, email, password });
+    mutationFn: ({ email, password }) => {
+      return login({ email, password });
     },
     onSuccess: (data) => {
       dispatch(userActions.setUserInfo(data));
@@ -65,22 +65,19 @@ const RegisterPage = () => {
     register,
     handleSubmit,
     formState: { errors, isValid },
-    watch,
     // reset,
   } = useForm({
     defaultValues: {
-      name: "",
       email: "",
       password: "",
-      confirmPassword: "",
     },
 
     mode: "onChange",
   });
 
   const submitHandler = (data) => {
-    const { name, email, password } = data;
-    mutate({ name, email, password });
+    const { email, password } = data;
+    mutate({ email, password });
   };
 
   return (
@@ -88,39 +85,9 @@ const RegisterPage = () => {
       <section className="container mx-auto px-5 py-10">
         <div className="w-full max-w-sm mx-auto">
           <h1 className="font-roboto text-2xl font-bold text-center text-dark-hard mb-8">
-            Sign up
+            Login
           </h1>
           <form onSubmit={handleSubmit(submitHandler)}>
-            <div className="flex flex-col mb-6 w-full h-32">
-              <label
-                htmlFor="name"
-                className="text-[#5a7184] font-semibold block"
-              >
-                Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                {...register("name", {
-                  required: "Name is required.",
-                  minLength: {
-                    value: 3,
-                    message: "Name must be at least 3 characters.",
-                  },
-                })}
-                placeholder="Enter name"
-                className={`border-b-2 py-4 px-5 block placeholder:text-[#959ead] text-dark-hard mt-3 focus:outline-none transition duration-200  ${
-                  errors.name
-                    ? "border-red-500 focus:border-red-500"
-                    : "border-[#5a7184] focus:border-cyan-500"
-                } `}
-              />
-              {errors.name?.message && (
-                <p className="text-red-500 text-sm mt-1">
-                  {errors.name?.message}
-                </p>
-              )}
-            </div>
             <div className="flex flex-col mb-6 w-full h-32">
               <label
                 htmlFor="email"
@@ -181,47 +148,26 @@ const RegisterPage = () => {
                 </p>
               )}
             </div>
-            <div className="flex flex-col mb-6 w-full h-32">
-              <label
-                htmlFor="confirmPassword"
-                className="text-[#5a7184] font-semibold block"
-              >
-                Confirm password
-              </label>
-              <input
-                type="password"
-                id="confirmPassword"
-                {...register("confirmPassword", {
-                  required: "Confirm password is required.",
-                  validate: (value) =>
-                    value === watch("password") || "Passwords do not match.",
-                })}
-                placeholder="Enter confirm password"
-                className={`border-b-2 border-[#5a7184] py-4 px-5 block placeholder:text-[#959ead] text-dark-hard mt-3 focus:outline-none transition duration-200 focus:border-cyan-500 ${
-                  errors.email
-                    ? "border-red-500 focus:border-red-500"
-                    : "border-[#5a7184] focus:border-cyan-500"
-                }`}
-              />
-              {errors.confirmPassword?.message && (
-                <p className="text-red-500 text-sm mt-1">
-                  {errors.confirmPassword?.message}
-                </p>
-              )}
-            </div>
+
+            <Link
+              to="/forget-password"
+              className="text-sm font-semibold text-primary"
+            >
+              Forgot password?
+            </Link>
             <button
               type="submit"
               disabled={!isValid || isLoading}
               // onClick={() => reset()}
-              className="bg-primary text-white font-bold text-lg py-4 px-8 w-full rounded-lg mb-6 hover:bg-blue-700 transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed"
+              className="bg-primary text-white font-bold text-lg py-4 px-8 w-full rounded-lg my-6 hover:bg-blue-700 transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed"
             >
-              Register
+              Sign In
             </button>
 
             <p className="text-sm font-semibold text-[#5a7184]">
-              You have an account?{" "}
-              <Link to="/login" className="text-primary">
-                Login now.
+              Do not have an account?{" "}
+              <Link to="/register" className="text-primary">
+                Register now.
               </Link>
             </p>
           </form>
@@ -231,4 +177,4 @@ const RegisterPage = () => {
   );
 };
 
-export default RegisterPage;
+export default LoginPage;
