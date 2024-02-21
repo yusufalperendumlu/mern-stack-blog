@@ -209,17 +209,11 @@ const RegisterPage = () => {
                 </p>
               )}
             </div>
-            <Link
-              to="/forget-password"
-              className="text-sm font-semibold text-primary"
-            >
-              Forgot password?
-            </Link>
             <button
               type="submit"
               disabled={!isValid || isLoading}
               // onClick={() => reset()}
-              className="bg-primary text-white font-bold text-lg py-4 px-8 w-full rounded-lg my-6 hover:bg-blue-700 transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed"
+              className="bg-primary text-white font-bold text-lg py-4 px-8 w-full rounded-lg mb-6 hover:bg-blue-700 transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed"
             >
               Register
             </button>
