@@ -130,7 +130,7 @@ const Header = () => {
               <div className="relative group">
                 <div className="flex flex-col items-center">
                   <p className="flex cursor-pointer gap-x-1 items-center  mt-5 lg:mt-0 border-2 border-blue-500 px-6 py-2 rounded-full text-blue-500 font-semibold hover:bg-blue-500 hover:text-white transition-all duration-300">
-                    <span>Profile</span>
+                    <span>Account</span>
                     <IoIosArrowDown
                       onClick={() => setProfileDropdown(!profileDropdown)}
                     />
@@ -143,9 +143,10 @@ const Header = () => {
                     <ul className="flex flex-col z-50 bg-dark-hard lg:bg-white shadow-lg rounded-lg overflow-hidden ">
                       <button
                         type="button"
+                        onClick={() => navigate("/profile")}
                         className="hover:bg-dark-hard hover:text-white px-4 py-2 text-white lg:text-dark-hard"
                       >
-                        Dashboard
+                        Profile Page
                       </button>
                       <button
                         onClick={logoutHandler}
