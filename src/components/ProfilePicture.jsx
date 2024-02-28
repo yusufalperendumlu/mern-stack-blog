@@ -6,7 +6,7 @@ import { stables } from "../constants";
 const ProfilePicture = ({ avatar }) => {
   return (
     <div className="w-full flex items-center gap-x-4">
-      <div className="relative w-20 h-20 rounded-full outline-offset-2 outline-1 outline-primary overflow-hidden ">
+      <div className="relative w-20 h-20 rounded-full outline outline-offset-2 outline-1  outline-primary overflow-hidden ">
         <label
           htmlFor="profilePicture"
           className="cursor-pointer absolute inset-0 rounded-full bg-transparent"
@@ -27,7 +27,7 @@ const ProfilePicture = ({ avatar }) => {
       </div>
       <button
         type="button"
-        className="border-red-500 rounded-lg px-4 py-2 text-red-500"
+        className="border border-red-500 rounded-lg px-4 py-2 text-red-500"
       >
         Delete
       </button>
