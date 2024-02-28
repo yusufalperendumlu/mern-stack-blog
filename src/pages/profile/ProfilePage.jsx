@@ -2,16 +2,19 @@ import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-hot-toast";
 
-import { getUserProfile } from "../../services/index/users";
+import { getUserProfile, updateProfile } from "../../services/index/users";
 
 import MainLayout from "../../components/MainLayout";
 import ProfilePicture from "../../components/ProfilePicture";
+import { userActions } from "../../store/reducers/userReducers";
 
 const ProfilePage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const queryClient = useQueryClient();
   const userState = useSelector((state) => state.user);
 
   const {
@@ -23,6 +26,49 @@ const ProfilePage = () => {
       return getUserProfile({ token: userState.userInfo.token });
     },
     queryKey: ["profile"],
+  });
+
+  const { mutate, isLoading } = useMutation({
+    mutationFn: ({ name, email, password }) => {
+      return updateProfile({
+        token: userState.userInfo.token,
+        userData: { name, email, password },
+      });
+    },
+    onSuccess: (data) => {
+      dispatch(userActions.setUserInfo(data));
+      localStorage.setItem("account", JSON.stringify(data));
+      queryClient.invalidateQueries(["profile"]);
+      toast.success("Profile is updated", {
+        position: "top-right",
+        style: {
+          borderRadius: "10px",
+          background: "#333",
+          color: "#fff",
+          border: "2px solid #10b981",
+        },
+        ariaProps: {
+          role: "alert",
+          "aria-live": "assertive",
+        },
+      });
+    },
+    onError: (error) => {
+      console.log(error);
+      toast.error(error.message, {
+        position: "top-right",
+        style: {
+          borderRadius: "10px",
+          background: "#333",
+          color: "#fff",
+          border: "2px solid #ff4b48",
+        },
+        ariaProps: {
+          role: "alert",
+          "aria-live": "assertive",
+        },
+      });
+    },
   });
 
   useEffect(() => {
@@ -49,7 +95,12 @@ const ProfilePage = () => {
     mode: "onChange",
   });
 
-  const submitHandler = (data) => {};
+  const submitHandler = (data) => {
+    const { name, email, password } = data;
+    mutate({ name, email, password });
+  };
+
+  console.log(profileData);
 
   return (
     <MainLayout>
@@ -125,19 +176,13 @@ const ProfilePage = () => {
                 htmlFor="password"
                 className="text-[#5a7184] font-semibold block"
               >
-                Password
+                New password (optional)
               </label>
               <input
                 type="password"
                 id="password"
-                {...register("password", {
-                  required: "Password is required.",
-                  minLength: {
-                    value: 6,
-                    message: "Password must be at least 6 characters.",
-                  },
-                })}
-                placeholder="Enter password"
+                {...register("password")}
+                placeholder="Enter new password"
                 className={`border-b-2 border-[#5a7184] py-4 px-5 block placeholder:text-[#959ead] text-dark-hard mt-3 focus:outline-none transition duration-200 focus:border-cyan-500 ${
                   errors.email
                     ? "border-red-500 focus:border-red-500"
@@ -152,7 +197,7 @@ const ProfilePage = () => {
             </div>
             <button
               type="submit"
-              disabled={!isValid || profileIsLoading}
+              disabled={!isValid || profileIsLoading || isLoading}
               // onClick={() => reset()}
               className="bg-primary text-white font-bold text-lg py-4 px-8 w-full rounded-lg mb-6 hover:bg-blue-700 transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed"
             >
