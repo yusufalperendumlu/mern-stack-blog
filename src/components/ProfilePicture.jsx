@@ -127,7 +127,7 @@ const ProfilePicture = ({ avatar }) => {
           onClick={deleteClickHandler}
           disabled={isLoading || photo == null}
           type="button"
-          className="border border-red-500 rounded-lg px-4 py-2 text-red-500 disabled:hidden"
+          className="border border-red-500 rounded-lg px-4 py-2 text-red-500 disabled:hidden hover:bg-red-500 hover:text-white transition-all duration-300 ease-linear"
         >
           Delete
         </button>
