@@ -20,7 +20,7 @@ const ProfilePage = () => {
   const {
     data: profileData,
     isLoading: profileIsLoading,
-    error: profileError,
+    // error: profileError,
   } = useQuery({
     queryFn: () => {
       return getUserProfile({ token: userState.userInfo.token });
@@ -28,7 +28,11 @@ const ProfilePage = () => {
     queryKey: ["profile"],
   });
 
+<<<<<<< HEAD
   const { mutate, isLoading } = useMutation({
+=======
+  const { mutate, isLoading: updateProfileIsLoading } = useMutation({
+>>>>>>> 5ef3660e6791b878a2613fa4a1b3e5564f01d7ff
     mutationFn: ({ name, email, password }) => {
       return updateProfile({
         token: userState.userInfo.token,
@@ -197,7 +201,11 @@ const ProfilePage = () => {
             </div>
             <button
               type="submit"
+<<<<<<< HEAD
               disabled={!isValid || profileIsLoading || isLoading}
+=======
+              disabled={!isValid || profileIsLoading || updateProfileIsLoading}
+>>>>>>> 5ef3660e6791b878a2613fa4a1b3e5564f01d7ff
               // onClick={() => reset()}
               className="bg-primary text-white font-bold text-lg py-4 px-8 w-full rounded-lg mb-6 hover:bg-blue-700 transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed"
             >
