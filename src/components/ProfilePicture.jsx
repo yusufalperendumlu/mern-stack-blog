@@ -92,6 +92,11 @@ const ProfilePicture = ({ avatar }) => {
   };
 
   return (
+    <div className="w-full flex items-center gap-x-4">
+      <div className="relative w-20 h-20 rounded-full outline outline-offset-2 outline-1  outline-primary overflow-hidden ">
+        <label
+          htmlFor="profilePicture"
+          className="cursor-pointer absolute inset-0 rounded-full bg-transparent"
     <>
       {openCrop &&
         createPortal(
@@ -127,6 +132,7 @@ const ProfilePicture = ({ avatar }) => {
           onClick={deleteClickHandler}
           disabled={isLoading || photo == null}
           type="button"
+
           className="border border-red-500 rounded-lg px-4 py-2 text-red-500 disabled:hidden hover:bg-red-500 hover:text-white transition-all duration-300 ease-linear"
         >
           Delete
@@ -142,6 +148,7 @@ const ProfilePicture = ({ avatar }) => {
         )}
       </div>
     </>
+
   );
 };
 
