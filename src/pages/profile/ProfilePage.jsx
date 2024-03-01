@@ -201,7 +201,7 @@ const ProfilePage = () => {
               // onClick={() => reset()}
               className="bg-primary text-white font-bold text-lg py-4 px-8 w-full rounded-lg mb-6 hover:bg-blue-700 transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed"
             >
-              Register
+              Update
             </button>
           </form>
         </div>
