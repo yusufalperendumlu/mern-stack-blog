@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { IoIosArrowDown } from "react-icons/io";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 import { images } from "../constants";
 import { logout } from "../store/actions/user";
@@ -11,23 +11,30 @@ const NavItemInfo = [
   {
     name: "Home",
     type: "link",
+    href: "/",
   },
   {
     name: "Articles",
     type: "link",
+    href: "/articles",
   },
   {
     name: "Pages",
     type: "dropdown",
-    items: ["About us", "Contact us"],
+    items: [
+      { title: "About us", href: "/about" },
+      { title: "Contact us", href: "/contact" },
+    ],
   },
   {
     name: "Pricing",
     type: "link",
+    href: "/pricing",
   },
   {
     name: "Faq",
     type: "link",
+    href: "/faq",
   },
 ];
 
@@ -44,9 +51,9 @@ const NavItem = ({ item }) => {
     <li className="relative group">
       {item.type === "link" ? (
         <>
-          <a href="/" className="px-4 py-2">
+          <Link to={item.href} className="px-4 py-2">
             {item.name}
-          </a>
+          </Link>
           <span className="text-blue-500 absolute right-0 top-0 opacity-0 transition-all duration-500 font-bold group-hover:opacity-100 group-hover:right-[90%]">
             /
           </span>
@@ -65,13 +72,13 @@ const NavItem = ({ item }) => {
             <ul className="flex flex-col z-50 bg-dark-hard lg:bg-white shadow-lg rounded-lg overflow-hidden ">
               {item.items.map((subItem, index) => {
                 return (
-                  <a
+                  <Link
                     key={index}
-                    href="/"
+                    to={subItem.href}
                     className="hover:bg-dark-soft hover:text-white px-4 py-2 text-white lg:text-dark-soft"
                   >
-                    {subItem}
-                  </a>
+                    {subItem.title}
+                  </Link>
                 );
               })}
             </ul>
@@ -102,9 +109,9 @@ const Header = () => {
   return (
     <section className="sticky top-0 right-0 left-0 bg-white z-50">
       <header className="container mx-auto px-5 py-4 flex justify-between items-center">
-        <div>
+        <Link to="/">
           <img className="w-16" src={images.Logo} alt="Logo" />
-        </div>
+        </Link>
         <div className="lg:hidden z-50">
           {navIsVisible ? (
             <AiOutlineClose
