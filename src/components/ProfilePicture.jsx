@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { createPortal } from "react-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { HiOutlineCamera } from "react-icons/hi";
+import { AiOutlineDelete } from "react-icons/ai";
 
-import { stables } from "../constants";
+import { stables, images } from "../constants";
+import PopupModal from "./modal/PopupModal";
 
 import CropEasy from "./crop/CropEasy";
 import toast from "react-hot-toast";
@@ -107,7 +109,7 @@ const ProfilePicture = ({ avatar }) => {
         <div className="relative w-20 h-20 rounded-full outline outline-offset-2 outline-1  outline-primary overflow-hidden ">
           <label
             htmlFor="profilePicture"
-            className="cursor-pointer absolute inset-0 rounded-full bg-transparent"
+            className="cursor-pointer absolute inset-0 rounded-full bg-transparent hover:bg-[#3fb3c51c] transition-all duration-300 ease-linear"
           >
             {avatar ? (
               <img
@@ -117,7 +119,7 @@ const ProfilePicture = ({ avatar }) => {
               />
             ) : (
               <div className="h-full w-full bg-blue-50/50 flex justify-center items-center">
-                <HiOutlineCamera className="w-7 " />
+                <HiOutlineCamera />
               </div>
             )}
           </label>
@@ -135,16 +137,15 @@ const ProfilePicture = ({ avatar }) => {
 
           className="border border-red-500 rounded-lg px-4 py-2 text-red-500 disabled:hidden hover:bg-red-500 hover:text-white transition-all duration-300 ease-linear"
         >
-          Delete
+          <AiOutlineDelete />
         </button>
         {showDeleteConfirmation && (
-          <div className="fixed top-0 left-0 flex items-center justify-center h-full w-full flex-col bg-tooltip z-50">
-            <div className="bg-sky-500 text-white w-1/3 h-1/3 flex items-center justify-center flex-col rounded-2xl">
-              <p>Are you sure you want to delete this comment?</p>
-              <button onClick={handleDeleteImage}>Yes, delete</button>
-              <button onClick={deleteCancelHandler}>Cancel</button>
-            </div>
-          </div>
+          <PopupModal
+            text={"image"}
+            image={images.DeleteImage}
+            methodDelete={handleDeleteImage}
+            methodCancel={deleteCancelHandler}
+          />
         )}
       </div>
     </>
