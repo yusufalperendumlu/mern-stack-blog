@@ -74,8 +74,6 @@ export const updateProfile = async ({ token, userData }) => {
     throw new Error(error.message);
   }
 };
-<<<<<<< HEAD
-=======
 
 export const updateProfilePicture = async ({ token, formData }) => {
   try {
@@ -100,4 +98,3 @@ export const updateProfilePicture = async ({ token, formData }) => {
     throw new Error(error.message);
   }
 };
->>>>>>> 5ef3660e6791b878a2613fa4a1b3e5564f01d7ff
