@@ -7,6 +7,8 @@ import { images } from "../../constants";
 import CommentForm from "./CommentForm";
 import autoAnimate from "@formkit/auto-animate";
 
+import PopupModal from "../modal/PopupModal";
+
 const Comment = ({
   comment,
   logginedUserId,
@@ -113,11 +115,12 @@ const Comment = ({
         </div>
         {showDeleteConfirmation && (
           <div className="fixed top-0 left-0 flex items-center justify-center h-full w-full flex-col bg-tooltip z-50">
-            <div className="bg-sky-500 text-white w-1/3 h-1/3 flex items-center justify-center flex-col rounded-2xl">
-              <p>Are you sure you want to delete this comment?</p>
-              <button onClick={deleteConfirmHandler}>Yes, delete</button>
-              <button onClick={deleteCancelHandler}>Cancel</button>
-            </div>
+            <PopupModal
+              image={images.DeleteImage}
+              text={"comment"}
+              methodCancel={deleteCancelHandler}
+              methodDelete={deleteConfirmHandler}
+            />
           </div>
         )}
 
