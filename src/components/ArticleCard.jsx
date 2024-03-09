@@ -2,11 +2,15 @@ import React from "react";
 import { BsCheckLg } from "react-icons/bs";
 
 import { images } from "../constants";
+import clsx from "clsx";
 
 const ArticleCard = ({ className }) => {
   return (
     <div
-      className={`rounded-xl overflow-hidden shadow-[rgba(7,_65,_210,_0.1)_0px_9px_30px] ${className}`}
+      className={clsx(
+        "rounded-xl overflow-hidden shadow-[rgba(7,_65,_210,_0.1)_0px_9px_30px]",
+        className
+      )}
     >
       <img
         src={images.Post1Image}
