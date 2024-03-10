@@ -10,6 +10,7 @@ import { getUserProfile, updateProfile } from "../../services/index/users";
 import MainLayout from "../../components/MainLayout";
 import ProfilePicture from "../../components/ProfilePicture";
 import { userActions } from "../../store/reducers/userReducers";
+import clsx from "clsx";
 
 const ProfilePage = () => {
   const navigate = useNavigate();
@@ -129,11 +130,12 @@ const ProfilePage = () => {
                   },
                 })}
                 placeholder="Enter name"
-                className={`border-b-2 py-4 px-5 block placeholder:text-[#959ead] text-dark-hard mt-3 focus:outline-none transition duration-200  ${
+                className={clsx(
+                  "border-b-2 py-4 px-5 block placeholder:text-[#959ead] text-dark-hard mt-3 focus:outline-none transition duration-200",
                   errors.name
                     ? "border-red-500 focus:border-red-500"
                     : "border-[#5a7184] focus:border-cyan-500"
-                } `}
+                )}
               />
               {errors.name?.message && (
                 <p className="text-red-500 text-sm mt-1">
@@ -159,11 +161,12 @@ const ProfilePage = () => {
                   },
                 })}
                 placeholder="Enter email"
-                className={`border-b-2 py-4 px-5 block placeholder:text-[#959ead] text-dark-hard mt-3 focus:outline-none transition duration-200 ${
+                className={clsx(
+                  "border-b-2 py-4 px-5 block placeholder:text-[#959ead] text-dark-hard mt-3 focus:outline-none transition duration-200",
                   errors.email
                     ? "border-red-500 focus:border-red-500"
                     : "border-[#5a7184] focus:border-cyan-500"
-                }`}
+                )}
               />
               {errors.email?.message && (
                 <p className="text-red-500 text-sm mt-1">
@@ -183,11 +186,12 @@ const ProfilePage = () => {
                 id="password"
                 {...register("password")}
                 placeholder="Enter new password"
-                className={`border-b-2 border-[#5a7184] py-4 px-5 block placeholder:text-[#959ead] text-dark-hard mt-3 focus:outline-none transition duration-200 focus:border-cyan-500 ${
-                  errors.email
+                className={clsx(
+                  "border-b-2 border-[#5a7184] py-4 px-5 block placeholder:text-[#959ead] text-dark-hard mt-3 focus:outline-none transition duration-200 focus:border-cyan-500",
+                  errors.password
                     ? "border-red-500 focus:border-red-500"
                     : "border-[#5a7184] focus:border-cyan-500"
-                }`}
+                )}
               />
               {errors.password?.message && (
                 <p className="text-red-500 text-sm mt-1">
