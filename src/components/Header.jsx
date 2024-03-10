@@ -6,6 +6,7 @@ import { useNavigate, Link } from "react-router-dom";
 
 import { images } from "../constants";
 import { logout } from "../store/actions/user";
+import clsx from "clsx";
 
 const NavItemInfo = [
   {
@@ -65,9 +66,10 @@ const NavItem = ({ item }) => {
             <IoIosArrowDown onClick={DropdownHandler} />
           </p>
           <div
-            className={`${
-              dropdown ? "hidden" : "block"
-            } lg:hidden transition-all duration-500 pt-4 absolute bottom-0 right-0 transform translate-y-full  w-max lg:group-hover:block z-50 opacity-100`}
+            className={clsx(
+              "lg:hidden transition-all duration-500 pt-4 absolute bottom-0 right-0 transform translate-y-full  w-max lg:group-hover:block z-50 opacity-100",
+              dropdown === true ? "block" : "hidden"
+            )}
           >
             <ul className="flex flex-col z-50 bg-dark-hard lg:bg-white shadow-lg rounded-lg overflow-hidden ">
               {item.items.map((subItem, index) => {
@@ -123,9 +125,10 @@ const Header = () => {
           )}
         </div>
         <div
-          className={`${
+          className={clsx(
+            "transition-all duration-300 mt-[56px] lg:mt-0 bg-dark-hard lg:bg-transparent z-[49] flex flex-col w-full lg:w-auto justify-center lg:justify-end lg:flex-row fixed top-0 bottom-0 lg:static gap-x-9 items-center",
             navIsVisible ? "right-0" : "-right-full"
-          } transition-all duration-300 mt-[56px] lg:mt-0 bg-dark-hard lg:bg-transparent z-[49] flex flex-col w-full lg:w-auto justify-center lg:justify-end lg:flex-row fixed top-0 bottom-0 lg:static gap-x-9 items-center`}
+          )}
         >
           <ul className="text-white items-center gap-y-5 lg:text-dark-soft flex flex-col lg:flex-row gap-x-3 font-semibold">
             {NavItemInfo.map((item) => {
@@ -143,9 +146,10 @@ const Header = () => {
                     />
                   </p>
                   <div
-                    className={`${
+                    className={clsx(
+                      "lg:hidden transition-all duration-500 pt-4 absolute bottom-0 right-0 transform translate-y-full  w-max lg:group-hover:block z-50 opacity-100",
                       profileDropdown ? "hidden" : "block"
-                    } lg:hidden transition-all duration-500 pt-4 absolute bottom-0 right-0 transform translate-y-full  w-max lg:group-hover:block z-50 opacity-100`}
+                    )}
                   >
                     <ul className="flex flex-col z-50 bg-dark-hard lg:bg-white shadow-lg rounded-lg overflow-hidden ">
                       <button

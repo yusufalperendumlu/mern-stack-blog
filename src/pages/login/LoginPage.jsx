@@ -10,6 +10,7 @@ import { login } from "../../services/index/users";
 import { userActions } from "../../store/reducers/userReducers";
 
 import MainLayout from "../../components/MainLayout";
+import clsx from "clsx";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -106,11 +107,12 @@ const LoginPage = () => {
                   },
                 })}
                 placeholder="Enter email"
-                className={`border-b-2 py-4 px-5 block placeholder:text-[#959ead] text-dark-hard mt-3 focus:outline-none transition duration-200 ${
+                className={clsx(
+                  "border-b-2 py-4 px-5 block placeholder:text-[#959ead] text-dark-hard mt-3 focus:outline-none transition duration-200 ",
                   errors.email
                     ? "border-red-500 focus:border-red-500"
                     : "border-[#5a7184] focus:border-cyan-500"
-                }`}
+                )}
               />
               {errors.email?.message && (
                 <p className="text-red-500 text-sm mt-1">
@@ -136,11 +138,12 @@ const LoginPage = () => {
                   },
                 })}
                 placeholder="Enter password"
-                className={`border-b-2 border-[#5a7184] py-4 px-5 block placeholder:text-[#959ead] text-dark-hard mt-3 focus:outline-none transition duration-200 focus:border-cyan-500 ${
+                className={clsx(
+                  "border-b-2 border-[#5a7184] py-4 px-5 block placeholder:text-[#959ead] text-dark-hard mt-3 focus:outline-none transition duration-200 focus:border-cyan-500",
                   errors.email
                     ? "border-red-500 focus:border-red-500"
                     : "border-[#5a7184] focus:border-cyan-500"
-                }`}
+                )}
               />
               {errors.password?.message && (
                 <p className="text-red-500 text-sm mt-1">
