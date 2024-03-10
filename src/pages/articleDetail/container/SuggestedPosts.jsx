@@ -1,10 +1,14 @@
+import clsx from "clsx";
 import React from "react";
 import { Link } from "react-router-dom";
 
 const SuggestedPosts = ({ className, header, posts = [], tags }) => {
   return (
     <div
-      className={`w-full shadow-[rgba(7,_65,_210,_0.1)_0px_9px_30px] rounded-lg p-4 ${className}`}
+      className={clsx(
+        "w-full shadow-[rgba(7,_65,_210,_0.1)_0px_9px_30px] rounded-lg p-4",
+        className
+      )}
     >
       <h2 className="font-roboto font-medium text-dark-hard md:text-lg">
         {header}

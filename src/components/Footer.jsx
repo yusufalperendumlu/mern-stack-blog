@@ -9,6 +9,7 @@ import {
 } from "react-icons/ri";
 
 import { images } from "../constants";
+import clsx from "clsx";
 
 const FooterItemInfo = [
   {
@@ -42,10 +43,11 @@ const FooterItemInfo = [
 const FooterItem = ({ item }) => {
   return (
     <div
-      className={`${
+      className={clsx(
+        "col-span-5 md:col-span-4 lg:col-span-2",
         item.position === "down-left" &&
-        "md:col-start-5 lg:col-start-auto lg:col-span-2"
-      } col-span-5 md:col-span-4 lg:col-span-2`}
+          "md:col-start-5 lg:col-start-auto lg:col-span-2"
+      )}
     >
       <h3 className="text-dark-light font-bold lg:text-lg">{item.name}</h3>
       <ul className="text-[#959EAD] text-sm mt-5 space-y-4 lg:text-base">
