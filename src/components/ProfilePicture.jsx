@@ -56,7 +56,6 @@ const ProfilePicture = ({ avatar }) => {
       });
     },
     onError: (error) => {
-      console.log(error);
       toast.error(error.message, {
         position: "top-right",
         style: {
@@ -89,7 +88,6 @@ const ProfilePicture = ({ avatar }) => {
       setShowDeleteConfirmation(false);
     } catch (error) {
       toast.error(error.message);
-      console.log(error);
     }
   };
 
