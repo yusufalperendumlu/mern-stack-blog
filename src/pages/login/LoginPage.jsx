@@ -45,7 +45,6 @@ const LoginPage = () => {
       });
     },
     onError: (error) => {
-      console.log(error);
       toast.error(error.message, {
         position: "top-right",
         style: {

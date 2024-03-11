@@ -43,7 +43,6 @@ const CropEasy = ({ photo, setOpenCrop }) => {
       });
     },
     onError: (error) => {
-      console.log(error);
       toast.error(error.message, {
         position: "top-right",
         style: {
@@ -78,7 +77,6 @@ const CropEasy = ({ photo, setOpenCrop }) => {
       mutate({ token: userState.userInfo.token, formData });
     } catch (error) {
       toast.error(error.message);
-      console.log(error);
     }
   };
 

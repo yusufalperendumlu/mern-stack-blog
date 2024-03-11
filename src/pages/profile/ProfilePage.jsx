@@ -55,7 +55,6 @@ const ProfilePage = () => {
       });
     },
     onError: (error) => {
-      console.log(error);
       toast.error(error.message, {
         position: "top-right",
         style: {
@@ -100,8 +99,6 @@ const ProfilePage = () => {
     const { name, email, password } = data;
     mutate({ name, email, password });
   };
-
-  console.log(profileData);
 
   return (
     <MainLayout>
