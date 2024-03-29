@@ -2,10 +2,10 @@ import React from "react";
 
 const PopupModal = ({ image, methodDelete, methodCancel, text }) => {
   return (
-    <div className="absolute left-0 bottom-8 flex items-center justify-center h-full w-full flex-col bg-tooltip z-50 ">
-      <div className="bg-white text-dark-light w-[40rem] h-[18rem] flex items-center justify-between flex-row rounded-2xl ">
-        <div className="relative w-1/3 h-full ml-3">
-          <img src={image} alt="delete" className="h-full" />
+    <div className="absolute left-0 bottom-0 flex items-center justify-center h-full w-full flex-col bg-tooltip z-50 ">
+      <div className="bg-white text-dark-light w-[20rem] h-[20rem] md:w-[40rem] md:h-[18rem] lg:w-[40rem] lg:h-[18rem] flex items-center justify-between flex-row rounded-2xl ">
+        <div className="relative w-1/3 h-full ml-3 ">
+          <img src={image} alt="delete" className="h-full " />
         </div>
         <div className="mr-6 flex items-center flex-col gap-y-4">
           <p className="text-lg font-medium">
