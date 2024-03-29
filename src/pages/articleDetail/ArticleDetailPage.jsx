@@ -114,19 +114,18 @@ const ArticleDetailPage = () => {
             tags={tagsData}
             className="mt-8 lg:mt-0 lg:max-w-xs"
           />
-          <div className="mt-7">
-            <h2 className="font-roboto font-medium text-dark-hard mb-4 md:text-xl">
-              Share on:
-            </h2>
-            <SocialShareButtons
-              url={encodeURI("https://github.com/yusufalperendumlu")}
-              title={encodeURIComponent(
-                "Client-side and Server-side explanation"
-              )}
-            />
-          </div>
         </div>
       </section>
+      <div className="fixed top-0 left-0 bg-white py-4 px-2 h-full z-50 opacity-90 border-r-2 mb-4 hidden lg:block">
+        <div className="flex justify-center items-start flex-col h-full">
+          <SocialShareButtons
+            url={encodeURI("https://github.com/yusufalperendumlu")}
+            title={encodeURIComponent(
+              "Client-side and Server-side explanation"
+            )}
+          />
+        </div>
+      </div>
     </MainLayout>
   );
 };
