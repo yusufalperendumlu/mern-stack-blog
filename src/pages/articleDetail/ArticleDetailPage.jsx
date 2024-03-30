@@ -1,29 +1,15 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 
-import { images } from "../../constants";
+import { images, stables } from "../../constants";
+import { getSinglePost } from "../../services/index/posts";
 
 import SuggestedPosts from "./container/SuggestedPosts";
-
 import BreadCrumbs from "../../components/BreadCrumbs";
 import CommentsContainer from "../../components/comments/CommentsContainer";
 import MainLayout from "../../components/MainLayout";
 import SocialShareButtons from "../../components/SocialShareButtons";
-
-const breadCrumbsData = [
-  {
-    name: "Home",
-    link: "/",
-  },
-  {
-    name: "Blog",
-    link: "/blog",
-  },
-  {
-    name: "Article title",
-    link: "/blog/1",
-  },
-];
 
 const postsData = [
   {
@@ -75,6 +61,21 @@ const tagsData = [
 ];
 
 const ArticleDetailPage = () => {
+  const { slug } = useParams();
+  const [breadCrumbsData, setBreadCrumbsData] = useState([]);
+
+  const { data, isLoading, isError } = useQuery({
+    queryFn: () => getSinglePost({ slug }),
+    onSuccess: (data) => {
+      console.log(data);
+      setBreadCrumbsData([
+        { name: "Home", link: "/" },
+        { name: "Blog", link: "/blog" },
+        { name: "Article title", link: `/blog/${data.slug}` },
+      ]);
+    },
+  });
+
   return (
     <MainLayout>
       <section className="container mx-auto max-w-5xl flex flex-col px-5 py-5 lg:flex-row lg:gap-x-5 lg:items-start">
@@ -82,15 +83,21 @@ const ArticleDetailPage = () => {
           <BreadCrumbs data={breadCrumbsData} />
           <img
             className="rounded-xl w-full"
-            src={images.Post1Image}
-            alt="laptop"
+            src={
+              data?.photo
+                ? stables.UPLOAD_FOLDER_BASE_URL + data.photo
+                : images.SampleImage
+            }
+            alt={data?.title}
           />
-          <Link
-            to="/blog?category=selectedCategory"
-            className="text-primary text-sm font-roboto inline-block mt-4 md:text-base"
-          >
-            EDUCATION
-          </Link>
+          {data?.categories.map((category) => (
+            <Link
+              to="/blog?category=selectedCategory"
+              className="text-primary text-sm font-roboto inline-block mt-4 md:text-base"
+            >
+              {category.name}
+            </Link>
+          ))}
           <h1 className="text-xl font-medium font-roboto mt-4 text-dark-hard md:text-[26px]">
             Help children get better education
           </h1>
